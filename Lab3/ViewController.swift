@@ -24,18 +24,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var isCelsius: Bool = true
     
     private let locationManager = CLLocationManager()
-//    let locationDelegate = MyLocationDelegate()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         
         displayImage(weatherCode: 0000)
         searchTextField.delegate = self
         locationManager.delegate = self
     }
     
+    
+    //onclick of temperature toggle switch
     @IBAction func onTempToggleTapped(_ sender: UISwitch) {
         isCelsius = sender.isOn
     }
@@ -49,7 +50,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    
+    //display imge function with parameters
     private func displayImage(weatherCode: Int) {
         let config = UIImage.SymbolConfiguration(paletteColors: [
             .systemOrange, .systemYellow, .black
@@ -100,22 +101,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     symbolName = "questionmark.circle.fill"
                 }
                 
-                
         
         weatherConditionImage.image = UIImage(systemName: symbolName)
     }
     
+    //onclick of search icon
     @IBAction func onSearchTapped(_ sender: UIButton) {
         loadWeather(search: searchTextField.text)
     }
     
+    //onclick of location icon
     @IBAction func onLocationTapped(_ sender: Any) {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
     }
     
-    
+    //load weather function
     private func loadWeather(search: String?) {
         
         guard let search = search else {
