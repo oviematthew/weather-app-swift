@@ -256,7 +256,7 @@ extension ViewController: CLLocationManagerDelegate {
 
 class MyLocationDelegate: NSObject, CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("we got a location")
+      
         
         if let location = locations.last{
             let latitude = location.coordinate.latitude
