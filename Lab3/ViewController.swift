@@ -25,6 +25,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     private let locationManager = CLLocationManager()
     
+    private let screen2Segue = "goToScreenTwo"
+    
+    private var searchDetails: [SearchDetail] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         isCelsius = sender.isOn
     }
     
+    //on click of favourite locations(next screen)
+    @IBAction func onFavLocationTapped(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.screen2Segue, sender: self)
+    }
     
     //onclick of the return button on the keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -169,8 +176,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     //change image based on code
                     self.displayImage(weatherCode: weatherResponse.current.condition.code)
                     
+                    
                 }
+                let detail = SearchDetail(name: weatherResponse.location.name, iconCode: weatherResponse.current.condition.code, celsuis: weatherResponse.current.temp_c, Fahrenheit: weatherResponse.current.temp_f )
+                                searchDetails.append(detail)
             }
+            
                 
             }
             
@@ -206,7 +217,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         return weather
     }
+    
+    //send values to second screen
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == screen2Segue {
+            if let destination = segue.destination as? Screen2ViewController {
+                destination.searchDetails = searchDetails
+            }
+        }
     }
+
+    
+}
+
+struct SearchDetail {
+    let name: String
+    let iconCode: Int
+    let celsuis: Float
+    let Fahrenheit: Float
+}
     
 struct WeatherResponse: Decodable{
     let location: Location
@@ -271,3 +300,5 @@ class MyLocationDelegate: NSObject, CLLocationManagerDelegate{
         print(error)
     }
 }
+
+
