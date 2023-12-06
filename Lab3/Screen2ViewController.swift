@@ -55,8 +55,14 @@ extension Screen2ViewController: UITableViewDataSource {
     
     // Helper method to get UIImage from icon code
     private func getImageForWeatherCode(_ weatherCode: Int) -> UIImage {
+        
             let symbolName: String
-            var config: UIImage.SymbolConfiguration
+            
+            //configiuration with preferred styles
+            let config: UIImage.SymbolConfiguration = UIImage.SymbolConfiguration(paletteColors: [
+                .systemOrange, .systemYellow, .black
+            ])
+
                     
                     switch weatherCode {
                     case 0000:
@@ -100,11 +106,7 @@ extension Screen2ViewController: UITableViewDataSource {
                         symbolName = "questionmark.circle.fill"
                     }
                     
-            //configiuration with preferred styles
-            config = UIImage.SymbolConfiguration(paletteColors: [
-                .systemOrange, .systemYellow, .black
-            ])
-
+            
             // Return the styled image with the preferred configuration
             return UIImage(systemName: symbolName, withConfiguration: config) ?? UIImage()
         
