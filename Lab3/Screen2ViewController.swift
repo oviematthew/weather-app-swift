@@ -70,7 +70,7 @@ extension Screen2ViewController: UITableViewDataSource {
         let searchDetail = searchDetails[indexPath.row]
         
         content.text = searchDetail.name
-        content.secondaryText = "\(searchDetail.celsuis)°C, \(searchDetail.Fahrenheit)°F"
+        content.secondaryText = "\(searchDetail.condition) (\(searchDetail.celsuis)°C, \(searchDetail.Fahrenheit)°F)"
         
         // Assuming you have a method to get UIImage from icon code
         let image = getImageForWeatherCode(searchDetail.iconCode)

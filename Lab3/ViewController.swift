@@ -161,7 +161,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 print(weatherResponse.current.temp_c)
                 
                 DispatchQueue.main.async {
+                    //Allow word wrap into multiple lines
                     self.locationLabel.numberOfLines = 0
+                    
                     self.locationLabel.text = "\(weatherResponse.location.name),  \(weatherResponse.location.region), \(weatherResponse.location.country)."
                     
                     self.weatherConditionLabel.text = "\(weatherResponse.current.condition.text)"
@@ -178,7 +180,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     
                     
                 }
-                let detail = SearchDetail(name: weatherResponse.location.name, iconCode: weatherResponse.current.condition.code, celsuis: weatherResponse.current.temp_c, Fahrenheit: weatherResponse.current.temp_f )
+                let detail = SearchDetail(name: "\(weatherResponse.location.name), \(weatherResponse.location.country)", iconCode: weatherResponse.current.condition.code, condition: weatherResponse.current.condition.text, celsuis: weatherResponse.current.temp_c, Fahrenheit: weatherResponse.current.temp_f )
                                 searchDetails.append(detail)
             }
             
@@ -233,6 +235,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 struct SearchDetail {
     let name: String
     let iconCode: Int
+    let condition: String
     let celsuis: Float
     let Fahrenheit: Float
 }

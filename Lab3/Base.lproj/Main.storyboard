@@ -80,9 +80,9 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather Condition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P57-z3-zcd">
-                                        <rect key="frame" x="103.99999999999999" y="345.33333333333337" width="141.66666666666663" height="20.333333333333314"/>
+                                        <rect key="frame" x="79" y="345.33333333333337" width="192" height="20.333333333333314"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="141.66999999999999" id="n1q-Zd-hXh"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="141.66999999999999" id="n1q-Zd-hXh"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.94509803920000002" green="0.93725490199999995" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
