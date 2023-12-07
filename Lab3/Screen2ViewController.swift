@@ -10,17 +10,22 @@ import UIKit
 class Screen2ViewController: UIViewController{
    
     
-    
+    //getting access to table view
     @IBOutlet weak var tableView: UITableView!
+    
+    //array passed from previous screen
     var searchDetails: [SearchDetail] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         tableView.dataSource = self
     }
     
+    
+    @IBAction func onDeleteTap(_ sender: UIButton) {
+        showAlert()
+    }
     
     //on click of return home button
     @IBAction func OnReturnHomeTapped(_ sender: UIButton) {
@@ -28,8 +33,30 @@ class Screen2ViewController: UIViewController{
     }
     
     
+    private func showAlert() {
+       
+        
+        let alert = UIAlertController(title: "Delete favorites", message: "Are you sure you want to delete all locations?", preferredStyle: .alert)
+           
+           let okButton = UIAlertAction(title: "OK", style: .default) { [weak self] action in
+               
+               // Clear the searchDetails array
+               self?.searchDetails.removeAll()
+               
+               // Reload the table view to reflect the changes
+               self?.tableView.reloadData()
+           }
+           
+           let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+           
+           alert.addAction(okButton)
+           alert.addAction(cancelButton)
+           
+           present(alert, animated: true)
+    }
     
 }
+
 
 extension Screen2ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,7 +80,7 @@ extension Screen2ViewController: UITableViewDataSource {
         return cell
     }
     
-    // Helper method to get UIImage from icon code
+   
     private func getImageForWeatherCode(_ weatherCode: Int) -> UIImage {
         
             let symbolName: String

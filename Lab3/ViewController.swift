@@ -161,7 +161,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 print(weatherResponse.current.temp_c)
                 
                 DispatchQueue.main.async {
-                    
+                    self.locationLabel.numberOfLines = 0
                     self.locationLabel.text = "\(weatherResponse.location.name),  \(weatherResponse.location.region), \(weatherResponse.location.country)."
                     
                     self.weatherConditionLabel.text = "\(weatherResponse.current.condition.text)"
